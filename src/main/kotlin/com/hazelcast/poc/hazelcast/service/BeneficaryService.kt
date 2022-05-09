@@ -1,5 +1,6 @@
 package com.hazelcast.poc.hazelcast.service
 
+import com.hazelcast.cache.ICache
 import com.hazelcast.poc.hazelcast.domain.Beneficiary
 import com.hazelcast.poc.hazelcast.repository.BeneficiaryRepository
 import org.springframework.cache.annotation.CachePut
@@ -10,16 +11,15 @@ import org.springframework.stereotype.Service
 class BeneficaryService(
     private val repository: BeneficiaryRepository
 ) {
-
     @Cacheable("beneficiary")
     fun getAll(): MutableList<Beneficiary> {
-        sleep(5000)
+        sleep(4000)
         return repository.getAll()
     }
 
     @Cacheable(value = ["beneficiary"], key = "#id")
-    fun get(id: Long): Beneficiary {
-        sleep(3000)
+    fun get(id: Long): Beneficiary? {
+        sleep(4000)
         return repository.getById(id)
     }
 

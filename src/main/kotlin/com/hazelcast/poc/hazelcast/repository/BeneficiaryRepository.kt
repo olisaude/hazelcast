@@ -12,8 +12,8 @@ class BeneficiaryRepository{
             }
     }
 
-    fun getById(id: Long): Beneficiary {
-        return MemoryDatabase.beneficiaryList.first {
+    fun getById(id: Long): Beneficiary? {
+        return MemoryDatabase.beneficiaryList.firstOrNull {
             it.id == id
         }
     }
